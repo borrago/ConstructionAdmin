@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  constructionadmin.database:
+    container_name: "constructionadmin.database"
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    ports:
+      - "8001:1433"
+    volumes:
+      - constructionadmin.database:/var/opt/mssql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      SA_PASSWORD: "0^5N1eb8ll5@G!O22wnow#Vn@"
+    networks:
+      - constructionadmin
+
+volumes:
+  constructionadmin.database:
+    name: constructionadmin.database
+    external: false
+
+networks:
+  constructionadmin:
+    name: constructionadmin
+    driver: bridge
